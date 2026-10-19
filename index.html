@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src https://script.google.com https://script.googleusercontent.com; form-action 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; connect-src https://hook.eu1.make.com; form-action 'none'; base-uri 'none'">
 <title>Wassta.AI | سجّل في الاختبار</title>
 <style>
   :root {
@@ -217,8 +217,8 @@
 
 <script>
 (function () {
-  // Paste the Apps Script web app URL here (ends with /exec).
-  var ENDPOINT = 'PASTE_YOUR_WEB_APP_URL_HERE';
+  // Make webhook that appends the sign-up to the private Google Sheet.
+  var ENDPOINT = 'https://hook.eu1.make.com/69s3g9pwzy03nn8p3wsb7svv8sp97hbu';
 
   var T = {
     ar: {
@@ -238,12 +238,12 @@
       c_consent: 'أوافق إن بياناتي (الاسم والواتساب والإيميل) تُستخدم للتواصل معايا بخصوص اختبار التطبيق فقط، وإن إيميلي يتضاف لقائمة المختبرين في Google Play.',
       n_title: 'تفاصيل حماية البيانات',
       notice: [
-        'المسؤول عن البيانات: Fahd Moustafa Elnahas Elhassan Ali، wassta.app@gmail.com.',
-        'الغرض: التواصل معاك بخصوص اختبار Wassta.AI، وإضافة إيميلك لقائمة المختبرين في Google Play.',
-        'الأساس: موافقتك. تقدر تسحبها في أي وقت بإيميل على العنوان ده.',
-        'الحفظ: في جدول خاص على Google Drive، وبنحذف بياناتك خلال 30 يوم من انتهاء الاختبار.',
-        'حقوقك: الاطلاع والتصحيح والحذف والاعتراض، وتقديم شكوى لـ Garante per la Protezione dei Dati Personali.',
-        'السياسة الكاملة: <a href="/wassta-privacy/">سياسة الخصوصية</a>.'
+‎        'المسؤول عن البيانات: Fahd Moustafa Elnahas Elhassan Ali، wassta.app@gmail.com.',
+‎        'الغرض: التواصل معاك بخصوص اختبار Wassta.AI، وإضافة إيميلك لقائمة المختبرين في Google Play.',
+‎        'الأساس: موافقتك. تقدر تسحبها في أي وقت بإيميل على العنوان ده.',
+‎        'الحفظ: في جدول خاص على Google Drive. النموذج بيعدّي على خدمة Make (المنطقة الأوروبية) قبل ما يوصل للجدول، وبنحذف بياناتك خلال 30 يوم من انتهاء الاختبار.',
+‎        'حقوقك: الاطلاع والتصحيح والحذف والاعتراض، وتقديم شكوى لـ Garante per la Protezione dei Dati Personali.',
+‎        'السياسة الكاملة: <a href="/wassta-privacy/">سياسة الخصوصية</a>.'
       ],
       submit: 'سجّلني في الاختبار', sending: 'جاري التسجيل...',
       ok_title: 'تم تسجيلك في الاختبار.',
@@ -278,7 +278,7 @@
         'Titolare del trattamento: Fahd Moustafa Elnahas Elhassan Ali, wassta.app@gmail.com.',
         "Finalità: contattarti per il test di Wassta.AI e inserire la tua email nell'elenco dei tester su Google Play.",
         'Base giuridica: il tuo consenso, revocabile in qualsiasi momento con una email a questo indirizzo.',
-        'Conservazione: in un foglio privato su Google Drive; cancelliamo i dati entro 30 giorni dalla fine del test.',
+        'Conservazione: in un foglio privato su Google Drive. Il modulo passa attraverso il servizio Make (zona europea) prima di arrivare al foglio; cancelliamo i dati entro 30 giorni dalla fine del test.',
         'Diritti: accesso, rettifica, cancellazione, opposizione e reclamo al Garante per la Protezione dei Dati Personali.',
         'Informativa completa: <a href="/wassta-privacy/">Informativa sulla privacy</a>.'
       ],
@@ -297,7 +297,8 @@
     }
   };
 
-  var lang = (navigator.language || '').toLowerCase().indexOf('it') === 0 ? 'it' : 'ar';
+  // Arabic is always the default. Italian only via the button or ?lang=it
+  var lang = (new URLSearchParams(location.search).get('lang') === 'it') ? 'it' : 'ar';
   var $ = function (id) { return document.getElementById(id); };
   var form = $('signup');
 
